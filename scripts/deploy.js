@@ -1,24 +1,27 @@
 async function main() {
   // if you changed the name of the contract, be sure to update this here!
-  const MyToken = await hre.ethers.getContractFactory("MyToken");
+  const MyToken = await hre.ethers.getContractFactory("StarBrightCleaners")
 
-  const nft = await MyToken.deploy();
+  const nft = await MyToken.deploy()
 
-  await nft.deployed();
+  await nft.deployed()
 
-  console.log("NFT deployed to:", nft.address);
- 
+  console.log("NFT deployed to:", nft.address)
+
   // mint one to yourself!
-  const signer0 = await ethers.provider.getSigner(0);
+  const signer0 = await ethers.provider.getSigner(0)
   // update the IPFS CID to be your metadata CID
-  await nft.safeMint(await signer0.getAddress(), "ipfs://QmbCwoJB7g9b86BfEahsjzyzzNx3WEu7Jc1opXWgeTXFgb");
+  await nft.safeMint(
+    await signer0.getAddress(),
+    "https://ipfs.io/ipfs/QmcHKwCha4SPLGUE64u4GUk6qyzku4gj1AtKHvLtrSd6aW",
+  )
 
-  console.log("NFT Minted!");
+  console.log("NFT Minted!")
 }
 
 main()
   .then(() => process.exit(0))
   .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
+    console.error(error)
+    process.exit(1)
+  })
